@@ -1,0 +1,52 @@
+# Render Blueprint: autopost-panel (Docker) + persistent SQLite on disk.
+# Connect repo in Dashboard → New → Blueprint → pick this file, or validate locally:
+#   render workspace set "My Workspace"
+#   render blueprints validate
+#
+# After first deploy: open the service → Environment → set every sync: false secret.
+# Free web tiers cannot attach disks; this uses starter + 1GB disk for SQLite.
+
+services:
+  - type: web
+    name: autopost-panel
+    runtime: docker
+    region: frankfurt
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /
+    disk:
+      name: app-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TT_REPO_ROOT
+        value: /app
+      - key: SQLITE_DB_PATH
+        value: /data/sqlite.db
+      - key: AUTOPOST_DATA_DIR
+        value: /data/panel
+      # Secrets — Dashboard will prompt; do not commit values.
+      - key: PANEL_ACCESS_TOKEN
+        sync: false
+      - key: CRON_SECRET
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: CLOUDFLARE_ACCOUNT_ID
+        sync: false
+      - key: CLOUDFLARE_R2_ACCESS_KEY_ID
+        sync: false
+      - key: CLOUDFLARE_R2_SECRET_ACCESS_KEY
+        sync: false
+      - key: CLOUDFLARE_R2_BUCKET
+        sync: false
+      - key: CLOUDFLARE_R2_PUBLIC_URL
+        sync: false
+      # Optional: pull default reel assets into /app on boot
+      - key: TT_REEL_ASSETS_MANIFEST_URL
+        sync: false
+      - key: TT_REEL_ASSETS_BASE_URL
+        sync: false

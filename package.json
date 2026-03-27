@@ -1,0 +1,60 @@
+{
+  "name": "trend-triangulation",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "db:push": "drizzle-kit push",
+    "ingest": "tsx scripts/ingest.ts",
+    "score": "tsx scripts/score.ts",
+    "analyze": "tsx scripts/analyze.ts",
+    "pipeline": "tsx scripts/ingest.ts && tsx scripts/score.ts && tsx scripts/analyze.ts",
+    "daemon": "tsx scripts/daemon.ts",
+    "reel": "tsx scripts/generate-reel.ts",
+    "reel:dry": "tsx scripts/generate-reel.ts --dry-run",
+    "reel:cluster": "tsx scripts/generate-reel.ts",
+    "get-youtube-token": "tsx scripts/get-youtube-token.ts",
+    "test:carousel": "tsx scripts/test-carousel-publish.ts",
+    "test": "tsx --test src/lib/reel.junction.test.ts src/lib/reel-assets-sync.test.ts",
+    "ig-worker": "tsx services/ig-autopublish/src/server.ts",
+    "panel:dev": "pnpm --filter autopost-panel dev",
+    "panel:build": "pnpm --filter autopost-panel build",
+    "panel:start": "pnpm --filter autopost-panel start",
+    "reel:upload-assets-r2": "tsx scripts/upload-reel-default-assets-r2.ts",
+    "export:autopost-standalone": "bash scripts/export-autopost-standalone.sh",
+    "push:autoposting:standalone": "bash scripts/push-standalone-to-autoposting.sh"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1004.0",
+    "@napi-rs/canvas": "^0.1.95",
+    "better-sqlite3": "^12.6.2",
+    "drizzle-orm": "^0.45.1",
+    "framer-motion": "^12.34.3",
+    "next": "16.1.6",
+    "openai": "^6.25.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "recharts": "^3.7.0",
+    "tsx": "^4.21.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "babel-plugin-react-compiler": "1.0.0",
+    "drizzle-kit": "^0.31.9",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "pnpm": {
+    "onlyBuiltDependenciesFile": "",
+    "onlyBuiltDependencies": [
+      "better-sqlite3",
+      "esbuild"
+    ]
+  }
+}
