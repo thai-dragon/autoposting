@@ -1,0 +1,62 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies (anywhere in the monorepo, not only repo root)
+node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+.next/
+out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# sqlite
+sqlite.db
+sqlite.db-wal
+sqlite.db-shm
+autopost-panel/*.sqlite
+autopost-panel/*.sqlite-*
+
+# Large reel assets (GitHub 100MB limit). Ship via Docker COPY from secrets CI, or TT_REEL_ASSETS_MANIFEST_URL.
+assets/cats-video/*.mp4
+assets/gameplay/*.mp4
+assets/forest-video/*.mp4
+assets/sounds/cat-sound.mp4
+assets/sounds/idea_22.mp3
+
+# Playwright / e2e artifacts
+**/playwright-report/
+**/test-results/
+
+# Local reel output
+tmp/reels/

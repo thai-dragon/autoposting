@@ -1,0 +1,7 @@
+packages:
+  - "."
+  - "autopost-panel"
+
+ignoredBuiltDependencies:
+  - sharp
+  - unrs-resolver

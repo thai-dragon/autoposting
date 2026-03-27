@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0a0a0a;
+  --card: #141414;
+  --border: #2a2a2a;
+  --accent: #d91b24;
+  --accent-dim: #9a141a;
+  --muted: #8a8a8a;
+}
+
+body {
+  background: var(--bg);
+  color: #f0f0f0;
+  font-family: system-ui, -apple-system, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
